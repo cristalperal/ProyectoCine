@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -10,6 +11,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,11 +21,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectocine.Controlador.PeliculaController">
    <children>
-      <AnchorPane id="pnlPrincipal" fx:id="pnlPrincipal" layoutX="-6.0" layoutY="9.0" prefHeight="625.0" prefWidth="1321.0" style="-fx-background-color: #17153b;">
+      <AnchorPane id="pnlPrincipal" fx:id="pnlPrincipal" layoutX="-6.0" layoutY="7.0" prefHeight="617.0" prefWidth="1283.0" style="-fx-background-color: #17153b; -fx-cursor: hand;">
          <children>
-            <Pane id="pnl" fx:id="pnl" layoutX="-7.0" layoutY="-12.0" prefHeight="51.0" prefWidth="1328.0" style="-fx-background-color: #2e236c;">
+            <Pane id="pnl" fx:id="pnl" layoutX="-7.0" layoutY="-12.0" prefHeight="51.0" prefWidth="1295.0" style="-fx-background-color: #2e236c;">
                <children>
                   <Label layoutX="644.0" layoutY="14.0" prefHeight="23.0" prefWidth="200.0" text="películas" textFill="#fdf6f6">
                      <font>
@@ -52,14 +56,14 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField id="txtCod" fx:id="txtCod" disable="true" editable="false" />
+                  <TextField fx:id="txtCod" disable="true" editable="false" />
                   <Separator prefHeight="23.0" prefWidth="303.0" />
                   <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="129.0" text="Título" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField id="txtNombreR" fx:id="txtTitulo" layoutX="10.0" layoutY="30.0" />
+                  <TextField fx:id="txtTitulo" layoutX="10.0" layoutY="30.0" />
                   <Separator layoutX="10.0" layoutY="55.0" prefHeight="23.0" prefWidth="303.0" />
                   <Label layoutX="10.0" layoutY="79.0" prefHeight="20.0" prefWidth="129.0" text="Fecha estreno" textFill="WHITE">
                      <font>
@@ -73,7 +77,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Spinner id="spnCosto" fx:id="spnduracion" />
+                  <Spinner fx:id="spnduracion" />
                   <Separator layoutX="10.0" layoutY="193.0" prefHeight="23.0" prefWidth="266.0" />
                   <Label layoutX="10.0" layoutY="216.0" prefHeight="20.0" prefWidth="129.0" text="Clasificación" textFill="WHITE">
                      <font>
@@ -88,13 +92,12 @@
                      </font>
                   </Label>
                   <TextArea fx:id="sinopsis" prefHeight="71.0" prefWidth="310.0" />
-                  <Separator layoutX="10.0" layoutY="330.0" prefHeight="23.0" prefWidth="303.0" />
                </children>
             </VBox>
             <Button id="btnGuardar" fx:id="btnGuardar" layoutX="76.0" layoutY="541.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #0275d8;" text="Guardar" textFill="#f6f2f2" />
-            <Button id="btnActualizar" fx:id="btnActualizar" disable="true" layoutX="968.0" layoutY="524.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #0275d8;" text="Actualizar" textFill="#f6f2f2" />
-            <Button id="btneliminar" fx:id="btneliminar" disable="true" layoutX="1136.0" layoutY="524.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #0275d8;" text="Eliminar" textFill="#f6f2f2" />
-            <TableView fx:id="tblRuta" layoutX="566.0" layoutY="111.0" prefHeight="397.0" prefWidth="725.0">
+            <Button id="btnActualizar" fx:id="btnActualizar" disable="true" layoutX="938.0" layoutY="524.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #0275d8;" text="Actualizar" textFill="#f6f2f2" />
+            <Button id="btneliminar" fx:id="btneliminar" disable="true" layoutX="1106.0" layoutY="524.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #0275d8;" text="Eliminar" textFill="#f6f2f2" />
+            <TableView fx:id="tblPelicula" layoutX="531.0" layoutY="111.0" prefHeight="397.0" prefWidth="725.0">
                <columns>
                   <TableColumn fx:id="colID" prefWidth="74.666748046875" text="ID" />
                   <TableColumn fx:id="colTitulo" prefWidth="211.99993896484375" text="Título" />
@@ -103,27 +106,47 @@
                   <TableColumn fx:id="colClasificacion" prefWidth="111.333251953125" text="Clasificación" />
                   <TableColumn fx:id="colSinopsis" prefWidth="177.3333740234375" text="Sinopsis" />
                </columns>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </TableView>
-            <Button id="btnCancelarAccion" fx:id="btnCancelarAccion" disable="true" layoutX="803.0" layoutY="524.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #0275d8;" text="Cancelar Acción" textFill="#f6f2f2" />
-            <Label layoutX="991.0" layoutY="73.0" prefHeight="20.0" prefWidth="107.0" text="Buscar película" textFill="WHITE">
+            <Button id="btnCancelarAccion" fx:id="btnCancelarAccion" disable="true" layoutX="773.0" layoutY="524.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #0275d8;" text="Cancelar Acción" textFill="#f6f2f2" />
+            <Label layoutX="956.0" layoutY="73.0" prefHeight="20.0" prefWidth="107.0" text="Buscar película" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnBuscar" layoutX="1245.0" layoutY="69.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: #0275d8;" />
-            <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="1257.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnBuscar" layoutX="1210.0" layoutY="69.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: #0275d8;" />
+            <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="1222.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Imagenes/busqueda.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="cmbBuscar" layoutX="1097.0" layoutY="70.0" prefHeight="25.0" prefWidth="139.0" />
-            <Button id="btnGuardar" fx:id="btnCargarPortada" layoutX="364.0" layoutY="111.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="166.0" style="-fx-background-color: #433D8B;" text="Cargar Portada" textFill="#f6f2f2" />
-            <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="497.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+            <ComboBox fx:id="cmbBuscar" layoutX="1062.0" layoutY="70.0" prefHeight="25.0" prefWidth="139.0" />
+            <Button fx:id="btnCargarPortada" layoutX="359.0" layoutY="112.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #433D8B;" text="Cargar Portada" textFill="#f6f2f2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="482.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Imagenes/subir.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="166.0" layoutX="364.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
+            <Pane fx:id="pnlPortada" layoutX="364.0" layoutY="160.0" prefHeight="172.0" prefWidth="139.0" style="-fx-background-color: rgba(255, 255, 255, 0.05); -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 1.5; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12;">
+               <children>
+                  <ImageView fx:id="imgPortada" fitHeight="150.0" fitWidth="107.0" layoutX="16.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #0d1117; -fx-background-radius: 8;" />
+               </children>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Pane>
          </children>
       </AnchorPane>
    </children>
