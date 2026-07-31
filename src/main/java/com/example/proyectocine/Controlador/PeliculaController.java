@@ -19,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PeliculaController implements Initializable {
@@ -93,16 +95,46 @@ public class PeliculaController implements Initializable {
         cargarDatos();
         setInitialPeliculaId();
         txtCod.setDisable(true);
+        DatePickerFecha.setEditable(false);
 
         btnGuardar.setOnAction(this::guardarPelicula);
         btnActualizar.setOnAction(this::modificarPelicula);
         btneliminar.setOnAction(this::eliminarPelicula);
         btnCancelarAccion.setOnAction(this::cancelarAccion);
         btnCargarPortada.setOnAction(this::seleccionarImagen);
+        btnBuscar.setOnAction(this::buscarPelicula);
 
         // Listener de selección de tabla
         tblPelicula.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> mostrarDetallesPelicula(newVal));
 
+    }
+
+    // Método para filtrar la tabla según lo elegido en combo
+    @FXML
+    private void buscarPelicula(ActionEvent event) {
+        String tituloSeleccionado = cmbBuscar.getValue();
+
+        if (tituloSeleccionado == null || tituloSeleccionado.trim().isEmpty()) {
+            mostrarAlerta("Atención", "Por favor seleccione un título del desplegable para buscar.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        ObservableList<Pelicula> resultadoBusqueda = FXCollections.observableArrayList();
+
+        for (Pelicula p : listaPeliculasO) {
+            if (p.getTitulo().equalsIgnoreCase(tituloSeleccionado)) {
+                resultadoBusqueda.add(p);
+                break;
+            }
+        }
+
+        tblPelicula.setItems(resultadoBusqueda);
+
+        if (!resultadoBusqueda.isEmpty()) {
+            tblPelicula.getSelectionModel().select(0);
+        } else {
+            mostrarAlerta("Sin resultados", "No se encontró la película seleccionada.", Alert.AlertType.INFORMATION);
+        }
     }
 
     // Método para seleccionar y mostrar la imagen de la portoda
@@ -242,6 +274,7 @@ public class PeliculaController implements Initializable {
         // Carga la lista desde tu DAO hacia la lista Observable de JavaFX
         listaPeliculasO = FXCollections.observableArrayList(peliculaDAO.obtenerTodasLasPeliculas());
         tblPelicula.setItems(listaPeliculasO);
+        cargarCombos();
     }
 
     //Objetivo: cargar los datos de la tabla en el formulario para actualizar
@@ -271,6 +304,16 @@ public class PeliculaController implements Initializable {
     private void cargarCombos() {
         cmboxClasificacion.setItems(FXCollections.observableArrayList("G", "PG", "PG-13", "R", "NC-17"));
         // cmbBuscar.setItems(FXCollections.observableArrayList("Código", "Título", "Clasificación"));
+
+       // Cargar todas las películas de la BD en el ComboBox de búsqueda
+        List<Pelicula> peliculasBD = peliculaDAO.obtenerTodasLasPeliculas();
+        List<String> titulos = new ArrayList<>();
+
+        for (Pelicula p : peliculasBD) {
+            titulos.add(p.getTitulo());
+        }
+
+        cmbBuscar.setItems(FXCollections.observableArrayList(titulos));
     }
 
     //Objetivo: Configurar los spinner con valores iniciales
@@ -294,6 +337,7 @@ public class PeliculaController implements Initializable {
         tblPelicula.getSelectionModel().clearSelection();
         peliculaSeleccionada = null;
         limpiarCampos();
+        cargarDatos();
     }
 
     //Objetivo: Limpiar los campos después de una acción
@@ -304,6 +348,7 @@ public class PeliculaController implements Initializable {
         spnduracion.getValueFactory().setValue(120);
         cmboxClasificacion.getSelectionModel().clearSelection();
         sinopsis.clear();
+        cmbBuscar.getSelectionModel().clearSelection();
 
         btnGuardar.setDisable(false);
         btnActualizar.setDisable(true);

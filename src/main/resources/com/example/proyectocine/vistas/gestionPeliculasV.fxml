@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectocine.Controlador.PeliculaController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectocine.Controlador.PeliculaController">
    <children>
       <AnchorPane id="pnlPrincipal" fx:id="pnlPrincipal" layoutX="-6.0" layoutY="7.0" prefHeight="617.0" prefWidth="1283.0" style="-fx-background-color: #17153b; -fx-cursor: hand;">
          <children>
@@ -84,7 +70,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmboxClasificacion" prefHeight="25.0" prefWidth="162.0" />
+                  <ComboBox fx:id="cmboxClasificacion" prefHeight="25.0" prefWidth="162.0" promptText="Seleccione" />
                   <Separator layoutX="10.0" layoutY="261.0" prefHeight="23.0" prefWidth="303.0" />
                   <Label layoutX="10.0" layoutY="285.0" prefHeight="20.0" prefWidth="129.0" text="Sinopsis" textFill="WHITE">
                      <font>
@@ -122,7 +108,7 @@
                   <Image url="@Imagenes/busqueda.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="cmbBuscar" layoutX="1062.0" layoutY="70.0" prefHeight="25.0" prefWidth="139.0" />
+            <ComboBox fx:id="cmbBuscar" layoutX="1062.0" layoutY="70.0" prefHeight="25.0" prefWidth="139.0" promptText="Seleccione" />
             <Button fx:id="btnCargarPortada" layoutX="359.0" layoutY="112.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #433D8B;" text="Cargar Portada" textFill="#f6f2f2">
                <font>
                   <Font name="System Bold" size="12.0" />
