@@ -119,8 +119,10 @@ public class VentaController implements Initializable {
             mostrarAlerta("Venta Registrada",
                     " VENTA PROCESADA \n" +
                             "-------------------------------------\n" +
-                            "• Cliente: " + cmbCliente.getValue() + "\n" +
-                            "• Película: " + cmbPelicula.getValue().getTitulo() + "\n" +
+                            " Cajero: " + cmbEmpleado.getValue() + "\n" +
+                            " Cliente: " + cmbCliente.getValue() + "\n" +
+                            " Película: " + cmbPelicula.getValue().getTitulo() + "\n" +
+                            " Función: " + cmbFuncion.getValue() + "\n" +
                             "-------------------------------------\n" +
                             "¡Venta realizada exitosamente!",
                     Alert.AlertType.INFORMATION);
