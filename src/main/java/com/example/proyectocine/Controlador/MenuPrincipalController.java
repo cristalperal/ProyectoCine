@@ -18,6 +18,7 @@ import java.io.IOException;
 public class MenuPrincipalController {
 
     @FXML private Button btnAdmPeliculas;
+    @FXML private Button btnAdmVenta;
 
     @FXML
     public void initialize() {
@@ -43,8 +44,25 @@ public class MenuPrincipalController {
             st.setToY(1.0);
             st.play();
         });
-    }
 
+        // Animación al pasar el mouse por encima
+       btnAdmVenta.setOnMouseEntered(e -> {
+           btnAdmVenta.setEffect(glow);
+            ScaleTransition st = new ScaleTransition(Duration.millis(150), btnAdmVenta);
+            st.setToX(1.04);
+            st.setToY(1.04);
+            st.play();
+        });
+
+        // Animación al retirar el mouse
+        btnAdmVenta.setOnMouseExited(e -> {
+            btnAdmVenta.setEffect(null);
+            ScaleTransition st = new ScaleTransition(Duration.millis(150), btnAdmVenta);
+            st.setToX(1.0);
+            st.setToY(1.0);
+            st.play();
+        });
+    }
 
 
     //Método genérico para cargar y mostrar una nueva ventana
@@ -69,10 +87,15 @@ public class MenuPrincipalController {
         }
     }
 
-    // Métodos para Abrir las ventanas de parada y ruta desde el menu principal
+    // Métodos para Abrir las ventanas
     @FXML
     public void AbrirGestionPelicula(ActionEvent actionEvent) {
         abrirNuevaVentana("gestionPeliculasV.fxml", "Gestión de películas");
+    }
+
+    @FXML
+    public void AbrirGestionVenta(ActionEvent actionEvent) {
+        abrirNuevaVentana("gestionVentaV.fxml", "Gestión de ventas");
     }
 
 }

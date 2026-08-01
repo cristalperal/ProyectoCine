@@ -20,21 +20,11 @@
             </ImageView>
             <Pane layoutX="76.0" layoutY="87.0" prefHeight="629.0" prefWidth="329.0" style="-fx-background-color: rgba(255, 255, 255, 0.05); -fx-border-width: 1.5; -fx-border-radius: 12; -fx-background-radius: 12; -fx-border-color: rgba(255, 255, 255, 0.2);">
                <children>
-                  <Label id="lblCalcularRuta" layoutX="69.0" layoutY="251.0" prefHeight="24.0" prefWidth="190.0" text="Gestión de películas" textFill="#edecec">
-                     <font>
-                        <Font name="Arial Bold" size="19.0" />
-                     </font>
-                  </Label>
-                  <Button id="btnGestionarParada" fx:id="btnAdmPeliculas" layoutX="54.0" layoutY="304.0" mnemonicParsing="false" onAction="#AbrirGestionPelicula" prefHeight="41.0" prefWidth="220.0" style="-fx-background-color: #17153b; -fx-background-radius: 10;" text="Administrar películas" textFill="WHITE">
+                  <Button id="btnGestionarParada" fx:id="btnAdmPeliculas" layoutX="86.0" layoutY="238.0" mnemonicParsing="false" onAction="#AbrirGestionPelicula" prefHeight="41.0" prefWidth="205.0" style="-fx-background-color: #17153b; -fx-background-radius: 10;" text="Administrar películas" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font></Button>
-                  <ImageView fitHeight="41.0" fitWidth="22.0" layoutX="248.0" layoutY="314.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Imagenes/ingresar.png" />
-                     </image>
-                  </ImageView>
-                  <Separator layoutX="54.0" layoutY="287.0" prefHeight="2.0" prefWidth="220.0" />
+                  <Separator layoutX="17.0" layoutY="292.0" opacity="0.52" prefHeight="3.0" prefWidth="295.0" />
                   <Label id="lblCalcularRuta" layoutX="94.0" layoutY="22.0" prefHeight="24.0" prefWidth="190.0" text="Menú Principal" textFill="#edecec">
                      <font>
                         <Font name="Arial Bold" size="19.0" />
@@ -46,6 +36,21 @@
                      </image>
                   </ImageView>
                   <Separator layoutY="60.0" opacity="0.54" prefHeight="3.0" prefWidth="329.0" />
+                  <Button id="btnGestionarParada" fx:id="btnAdmVenta" layoutX="86.0" layoutY="307.0" mnemonicParsing="false" onAction="#AbrirGestionVenta" prefHeight="41.0" prefWidth="205.0" style="-fx-background-color: #17153b; -fx-background-radius: 10;" text="Administrar ventas" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="46.0" layoutY="238.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/claqueta.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="41.0" fitWidth="31.0" layoutX="46.0" layoutY="312.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/ticket.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>

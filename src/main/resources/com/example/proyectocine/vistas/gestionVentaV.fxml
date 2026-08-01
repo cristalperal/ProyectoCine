@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="665.0" prefWidth="1018.0" style="-fx-background-color: #17153b;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectocine.Controlador.VentaController">
+    <children>
+
+        <!-- Panel Izquierdo: Formularios -->
+        <VBox layoutX="29.0" layoutY="84.0" prefWidth="380.0" spacing="10.0" style="-fx-background-color: #252440; -fx-background-radius: 10; -fx-padding: 15;">
+            <children>
+                <Label text="Registrar Venta" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+
+                <Label text="Sucursal" textFill="WHITE" />
+                <ComboBox fx:id="cmbSucursal" prefWidth="350.0" promptText="Seleccione" />
+
+                <Label text="Empleado (Cajero)" textFill="WHITE" />
+                <ComboBox fx:id="cmbEmpleado" prefWidth="350.0" promptText="Seleccione" />
+
+                <Label text="Cliente" textFill="WHITE" />
+                <ComboBox fx:id="cmbCliente" prefWidth="350.0" promptText="Seleccione" />
+
+                <Label text="Película" textFill="WHITE" />
+                <ComboBox fx:id="cmbPelicula" prefWidth="350.0" promptText="Seleccione" />
+
+                <Label text="Función (Horario/Idioma)" textFill="WHITE" />
+                <ComboBox fx:id="cmbFuncion" prefWidth="350.0" promptText="Seleccione" />
+
+                <Label text="Cantidad de Boletos" textFill="WHITE" />
+                <Spinner fx:id="spnCantidad" prefWidth="350.0" />
+
+                <Label text="Total a Pagar" textFill="WHITE" />
+                <TextField fx:id="txtTotal" editable="false" prefWidth="350.0" style="-fx-font-weight: bold; -fx-font-size: 14;" />
+
+                <Button fx:id="btnVender" maxWidth="1.2974938222887018E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #0088ff; -fx-text-fill: white; -fx-font-weight: bold;" text="Vender boleto">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+
+        <!-- Panel Derecho: Tabla Resumen -->
+        <VBox layoutX="451.0" layoutY="84.0" prefHeight="500.0" prefWidth="536.0" spacing="10.0" style="-fx-background-color: #252440; -fx-background-radius: 10; -fx-padding: 15;">
+            <children>
+                <Label text="Resumen de Ventas Realizadas" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+
+                <TableView fx:id="tblVentas" prefHeight="400.0" prefWidth="460.0">
+                    <columns>
+                        <TableColumn fx:id="colIDVenta" prefWidth="80.0" text="ID Venta" />
+                        <TableColumn fx:id="colPelicula" prefWidth="150.0" text="Película" />
+                        <TableColumn fx:id="colCantidad" prefWidth="87.33335876464844" text="Boletos" />
+                        <TableColumn fx:id="colTotal" prefWidth="78.0" text="Total" />
+                        <TableColumn fx:id="colFecha" prefWidth="108.0" text="Fecha" />
+                    </columns>
+                </TableView>
+
+                <Button fx:id="btnCancelar" maxWidth="1.2974938222887018E308" mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #444360; -fx-text-fill: white;" text=" Limpiar Campos" />
+            </children>
+        </VBox>
+      <Pane id="pnl" fx:id="pnl" layoutY="-2.0" prefHeight="51.0" prefWidth="1018.0" style="-fx-background-color: #2e236c;">
+         <children>
+            <Label layoutX="483.0" layoutY="14.0" prefHeight="23.0" prefWidth="200.0" text="venta de boletos" textFill="#fdf6f6">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="401.0" layoutY="14.0" prefHeight="23.0" prefWidth="122.0" text="Gestión " textFill="#fdf6f6">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="369.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/boleto2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
